@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  SearchViewController.swift
 //  eBay
 //
 //  Created by Dan Hozan on 01.03.2024.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class SearchController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-
     }
     
 
