@@ -42,10 +42,11 @@ class SignInController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Sign In", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor.systemGray5
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
@@ -65,6 +66,7 @@ class SignInController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureDismissButton()
+        configureNotificationObservers()
         addSubviewsConstraints()
     }
     
@@ -78,6 +80,11 @@ class SignInController: UIViewController {
     private func configureDismissButton(){
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = dismissButton
+    }
+    
+    private func configureNotificationObservers(){
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
     private func addSubviewsConstraints() {
@@ -111,26 +118,28 @@ class SignInController: UIViewController {
         }
     }
     
-    @objc private func signInButtonPressed(){
-        viewModel.email = emailTextField.text
-        viewModel.password = passwordTextField.text
-        
-        if viewModel.formIsValid {
-            guard let email = emailTextField.text else { return }
-            guard let password = passwordTextField.text else { return }
-            FirebaseAuthManager.shared.signIn(email: email, password: password) { result in
-                switch result {
-                case .success(_):
-                    self.dismissView()
-                case .failure(let error):
-                    ProgressHUD.failed("\(error.localizedDescription)")
-                }
-            }
-            
-        } else {
-            ProgressHUD.failed("Plase fill all fields for authentification")
+    @objc private func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = emailTextField.text
         }
+        else if sender == passwordTextField {
+            viewModel.password = passwordTextField.text
+        }
+        updateForm()
         
+    }
+    
+    @objc private func signInButtonPressed(){
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        FirebaseAuthManager.shared.signIn(email: email, password: password) { error in
+            if let error = error {
+                ProgressHUD.failed("\(error.localizedDescription)")
+                return
+                
+            }
+            self.dismissView()
+        }
     }
     
     
@@ -138,5 +147,14 @@ class SignInController: UIViewController {
         navigationController?.pushViewController(SignUpController(), animated: true)
 
     }
+    
+    // MARK: - Helpers
+    
+    private func updateForm(){
+        signInButton.isEnabled = viewModel.formIsValid
+        signInButton.backgroundColor = viewModel.buttonColor
+
+    }
+    
     
 }

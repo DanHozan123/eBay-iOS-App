@@ -5,7 +5,7 @@
 //  Created by Dan Hozan on 02.03.2024.
 //
 
-import Foundation
+import UIKit
 
 struct SingInViewModel {
     var email: String?
@@ -13,6 +13,9 @@ struct SingInViewModel {
     
     var formIsValid: Bool {
         return email?.isEmpty == false && password?.isEmpty == false
+    }
+    var buttonColor: UIColor {
+        return formIsValid ? .blue : .systemGray5
     }
     
 }
