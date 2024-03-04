@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 enum FCollectionReferance: String {
-    case User
+    case Users
 }
 
 func FirebaseReference(collectionReferance: FCollectionReferance) -> CollectionReference {

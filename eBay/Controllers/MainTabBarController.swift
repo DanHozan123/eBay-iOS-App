@@ -37,11 +37,11 @@ class MainTabBarController: UITabBarController {
         let basketNC = UINavigationController(rootViewController: BasketController())
         basketNC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), selectedImage: UIImage(systemName: "basket.fill"))
 
-        let profileNC = UINavigationController(rootViewController: ProfileController())
-        profileNC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
+        let profileVC = ProfileController()
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
 
         
-        self.viewControllers = [categoriesNC, searchNC, favoritesNC, basketNC, profileNC]
+        self.viewControllers = [categoriesNC, searchNC, favoritesNC, basketNC, profileVC]
         
         tabBar.tintColor = .black
     }

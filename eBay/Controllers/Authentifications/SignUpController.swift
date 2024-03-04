@@ -20,8 +20,9 @@ class SignUpController: UIViewController {
     
     private lazy var addProfileImageView : UIImageView = {
         let imageView = UIImageView()
+  
         imageView.image = UIImage(systemName: "person.crop.circle")
-        imageView.contentMode = .scaleAspectFit
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addProfileImageTapped))
         imageView.addGestureRecognizer(tapGesture)
         imageView.isUserInteractionEnabled = true
@@ -76,6 +77,7 @@ class SignUpController: UIViewController {
     
     
     // MARK: - Configurations
+    
     private func configureUI() {
         navigationController?.navigationBar.tintColor = .black
         title = "Sign Up"
@@ -156,7 +158,7 @@ class SignUpController: UIViewController {
                 ProgressHUD.failed(error.localizedDescription)
                 return
             }
-            
+        
             ProgressHUD.succeed("Sign Up Completed")
             self.dismissView()
         }
@@ -166,7 +168,9 @@ class SignUpController: UIViewController {
         guard let picker = picker else { return }
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
-                self.setImage(image: photo.image)
+                let imageDefault = UIImageView()
+                imageDefault.image = photo.image
+                self.addProfileImageView.image = imageDefault.image?.circleMasked
             }
             picker.dismiss(animated: true, completion: nil)
         }
@@ -182,13 +186,7 @@ class SignUpController: UIViewController {
         signUpButton.backgroundColor = viewModel.buttonColor
         
     }
-    
-    private func setImage(image: UIImage){
-        addProfileImageView.layer.cornerRadius =  addProfileImageView.frame.width / 2
-        addProfileImageView.layer.masksToBounds = true
-        addProfileImageView.image =  image
-    }
-    
+
     
     
 }

@@ -31,6 +31,8 @@
 		0E5336452B94A3500067E188 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5336442B94A3500067E188 /* User.swift */; };
 		0E5336492B94AC200067E188 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5336482B94AC200067E188 /* FCollectionReference.swift */; };
 		0E53364B2B94F9E70067E188 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53364A2B94F9E70067E188 /* FileStorage.swift */; };
+		0E53364D2B9519390067E188 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53364C2B9519390067E188 /* ProfileViewModel.swift */; };
+		0E53364F2B95236B0067E188 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E53364E2B95236B0067E188 /* UserService.swift */; };
 		0EFF69C42B933EBC007D996C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFF69C32B933EBC007D996C /* CategoryViewModel.swift */; };
 		0EFF69C62B934B8A007D996C /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFF69C52B934B8A007D996C /* FavoritesController.swift */; };
 		0EFF69C82B9354B7007D996C /* ProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFF69C72B9354B7007D996C /* ProductController.swift */; };
@@ -66,6 +68,8 @@
 		0E5336442B94A3500067E188 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0E5336482B94AC200067E188 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		0E53364A2B94F9E70067E188 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		0E53364C2B9519390067E188 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		0E53364E2B95236B0067E188 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		0EFF69C32B933EBC007D996C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		0EFF69C52B934B8A007D996C /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		0EFF69C72B9354B7007D996C /* ProductController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				0E1C328B2B9389F300A6B9B5 /* FirebaseAuthManager.swift */,
 				0E5336482B94AC200067E188 /* FCollectionReference.swift */,
 				0E53364A2B94F9E70067E188 /* FileStorage.swift */,
+				0E53364E2B95236B0067E188 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				0EFF69C32B933EBC007D996C /* CategoryViewModel.swift */,
 				0E1C32872B93863E00A6B9B5 /* SignInViewModel.swift */,
 				0E5336422B9498400067E188 /* SignUpViewModel.swift */,
+				0E53364C2B9519390067E188 /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				0E5336492B94AC200067E188 /* FCollectionReference.swift in Sources */,
 				0EFF69C62B934B8A007D996C /* FavoritesController.swift in Sources */,
 				0E3B051F2B92546F00BBC695 /* ViewController.swift in Sources */,
+				0E53364D2B9519390067E188 /* ProfileViewModel.swift in Sources */,
 				0E3B05372B9262CF00BBC695 /* BasketController.swift in Sources */,
 				0E1C328C2B9389F300A6B9B5 /* FirebaseAuthManager.swift in Sources */,
 				0E1C32862B936E3B00A6B9B5 /* SignInController.swift in Sources */,
@@ -360,6 +367,7 @@
 				0E3B05452B92974200BBC695 /* Categories.swift in Sources */,
 				0E3B053C2B926CE400BBC695 /* HomeCollectionCell.swift in Sources */,
 				0E3B051D2B92546F00BBC695 /* SceneDelegate.swift in Sources */,
+				0E53364F2B95236B0067E188 /* UserService.swift in Sources */,
 				0E3B05392B9262E200BBC695 /* ProfileController.swift in Sources */,
 				0EFF69C82B9354B7007D996C /* ProductController.swift in Sources */,
 				0E5336432B9498400067E188 /* SignUpViewModel.swift in Sources */,
