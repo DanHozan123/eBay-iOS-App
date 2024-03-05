@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0B97172B9749AA009D2112 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B97162B9749AA009D2112 /* ProductService.swift */; };
+		0E0B97192B9749FD009D2112 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B97182B9749FD009D2112 /* Product.swift */; };
 		0E1C32862B936E3B00A6B9B5 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C32852B936E3B00A6B9B5 /* SignInController.swift */; };
 		0E1C32882B93863E00A6B9B5 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C32872B93863E00A6B9B5 /* SignInViewModel.swift */; };
 		0E1C328C2B9389F300A6B9B5 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C328B2B9389F300A6B9B5 /* FirebaseAuthManager.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0B97162B9749AA009D2112 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		0E0B97182B9749FD009D2112 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		0E1C32852B936E3B00A6B9B5 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		0E1C32872B93863E00A6B9B5 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		0E1C328B2B9389F300A6B9B5 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				0E5336482B94AC200067E188 /* FCollectionReference.swift */,
 				0E53364A2B94F9E70067E188 /* FileStorage.swift */,
 				0E53364E2B95236B0067E188 /* UserService.swift */,
+				0E0B97162B9749AA009D2112 /* ProductService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			children = (
 				0E3B05442B92974200BBC695 /* Categories.swift */,
 				0E5336442B94A3500067E188 /* User.swift */,
+				0E0B97182B9749FD009D2112 /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				0EFF69CA2B9359C2007D996C /* AddProductController.swift in Sources */,
 				0E1C328E2B93909200A6B9B5 /* SignUpController.swift in Sources */,
 				0E3B05352B92620200BBC695 /* SearchController.swift in Sources */,
+				0E0B97172B9749AA009D2112 /* ProductService.swift in Sources */,
 				0E1C32882B93863E00A6B9B5 /* SignInViewModel.swift in Sources */,
 				0E3B05482B929A9E00BBC695 /* ProductsController.swift in Sources */,
 				0E5336492B94AC200067E188 /* FCollectionReference.swift in Sources */,
@@ -360,6 +367,7 @@
 				0E3B05372B9262CF00BBC695 /* BasketController.swift in Sources */,
 				0E1C328C2B9389F300A6B9B5 /* FirebaseAuthManager.swift in Sources */,
 				0E1C32862B936E3B00A6B9B5 /* SignInController.swift in Sources */,
+				0E0B97192B9749FD009D2112 /* Product.swift in Sources */,
 				0E3B051B2B92546F00BBC695 /* AppDelegate.swift in Sources */,
 				0E3B052F2B925C3600BBC695 /* MainTabBarController.swift in Sources */,
 				0E3B05432B9294BF00BBC695 /* Extensions.swift in Sources */,

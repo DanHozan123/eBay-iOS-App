@@ -9,6 +9,13 @@ import UIKit
 import FirebaseStorage
 
 
+
+
+enum FImagePath: String {
+    case profileImages
+    case productImages
+}
+
 class FileStorage {
     
     static let shared = FileStorage()
@@ -17,25 +24,23 @@ class FileStorage {
     
     // MARK: - Upload Image
     
-    func uploadImageToFirebase(image: UIImage, completion: @escaping (String) -> Void) {
+    func uploadImageToFirebase(image: UIImage, imagePath: FImagePath, completion: @escaping (String) -> Void) {
         let filename = "\(UUID().uuidString).jpg"
-        let imageRef = Storage.storage().reference().child("profileImages/\(filename)")
+        let imageRef = Storage.storage().reference().child("\(FImagePath.profileImages)/\(filename)")
         
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            print("DEBUG: Failed to convert UIImage to data. / FUNC: uploadImageToFirebase()")
             return
         }
         
-        
         imageRef.putData(imageData) { (metadata, error) in
             guard let _ = metadata else {
-                print("DEBUG: Error uploading image. / FUNC: uploadImageToFirebase() / ERROR:", error?.localizedDescription ?? "FUNC: uploadImageToFirebase() / ERROR: Unknown error")
+                print("ERROR: Error uploading image.", error?.localizedDescription ?? "ERROR: Unknown error.")
                 return
             }
             
             imageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
-                    print("DEBUG: Error getting download URL. / FUNC: uploadImageToFirebase() / ERROR: ", error?.localizedDescription ?? "FUNC: uploadImageToFirebase() / ERROR: Unknown error")
+                    print("DEBUG: Error getting download URL.", error?.localizedDescription ?? "ERROR: Unknown error.")
                     return
                 }
                 completion(downloadURL.absoluteString)

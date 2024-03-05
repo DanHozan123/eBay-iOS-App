@@ -70,9 +70,11 @@ class ProfileController: UIViewController {
         
         let imageDefault = UIImageView()
         imageDefault.sd_setImage(with: URL(string: avatarLink)) { (_, error, _, _)  in
-            if error != nil {
-                self.profileImageView.image = imageDefault.image?.circleMasked
+            if let error = error {
+                print("DEBUG: Failed to set data. / FUNC: configureUI() / ERROR: ", error.localizedDescription)
+                return
             }
+            self.profileImageView.image = imageDefault.image?.circleMasked
         }
    
     }
@@ -109,7 +111,7 @@ class ProfileController: UIViewController {
     }
     
     
-    //MARK: - Helpers
+    //MARK: - Navigation
     
     private func goToMainTabBar(){
         let signInNC = UINavigationController(rootViewController: SignInController())

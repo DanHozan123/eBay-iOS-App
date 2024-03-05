@@ -20,7 +20,7 @@ class UserService {
         do {
             try FirebaseReference(collectionReferance: .Users).document(user.id).setData(from: user)
         } catch {
-            print("DEBUG: Failed to upload user to firestore. / FUNC: uploadUserToFirestore()  / ERROR:", error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
 
@@ -29,7 +29,7 @@ class UserService {
     func downloadUserFromFirestore(userID: String, completion: @escaping (User?) -> Void) {
         FirebaseReference(collectionReferance: .Users).document(userID).getDocument { document, error in
             if error != nil {
-                print("DEBUG: Failed to download user from firestore. / FUNC: downloadUserFromFirestore() / ERROR:", error?.localizedDescription ?? "FUNC: downloadUserFromFirestore() / ERROR: Unknown error")
+                print(error?.localizedDescription ?? "ERROR: Unknown error")
                 return
             } else if let document = document {
                 let user = try? document.data(as: User.self)
@@ -46,7 +46,7 @@ class UserService {
                 let user = try JSONDecoder().decode(User.self, from: userData)
                 return user
             } catch {
-                print("DEBUG: Error decoding user data. / FUNC: getCurrentUserFromLocalMemory() / ERROR:", error.localizedDescription)
+                print(error.localizedDescription)
             }
         }
         return nil
@@ -59,7 +59,7 @@ class UserService {
             let userData = try JSONEncoder().encode(user)
             UserDefaults.standard.set(userData, forKey: "currentUser")
         } catch {
-            print("DEBUG: Failed to encode user data. / FUNC: saveUserLocally() / ERROR:", error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
 

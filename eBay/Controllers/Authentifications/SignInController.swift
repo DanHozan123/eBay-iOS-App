@@ -110,9 +110,8 @@ class SignInController: UIViewController {
     // MARK: - Actions
     
     @objc private func dismissView() {
-        dismiss(animated: true, completion: nil)
+        
         let destinationViewController = MainTabBarController()
-
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.window?.rootViewController = destinationViewController
         }
@@ -155,6 +154,5 @@ class SignInController: UIViewController {
         signInButton.backgroundColor = viewModel.buttonColor
 
     }
-    
-    
+
 }

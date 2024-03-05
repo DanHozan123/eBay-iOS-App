@@ -16,7 +16,6 @@ class ProductTableCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "iPhone15 Pro Max")
-        imageView.layer.cornerRadius = 25
         return imageView
     }()
     

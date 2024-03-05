@@ -47,7 +47,12 @@ class CategoriesController: UICollectionViewController {
     // MARK: - Actinos
     
     @objc private func addProductButtonTapped(){
-        navigationController?.pushViewController(AddProductController(), animated: true)
+        if let user = UserService.shared.getCurrentUserFromLocalMemory() {
+            navigationController?.pushViewController(AddProductController(user: user), animated: true)
+        }
+        else {
+            goToMainTabBar()
+        }
     }
     
     
@@ -89,5 +94,14 @@ extension CategoriesController: UICollectionViewDelegateFlowLayout {
         let width = (view.frame.width - 30 ) / 2
         return CGSize(width: width, height: width)
     }
+    
+    //MARK: - Helpers
+    
+    private func goToMainTabBar(){
+        let signInNC = UINavigationController(rootViewController: SignInController())
+        signInNC.modalPresentationStyle = .fullScreen
+        present(signInNC, animated: true, completion: nil)
+    }
+    
 }
 

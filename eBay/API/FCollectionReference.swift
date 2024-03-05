@@ -10,7 +10,9 @@ import FirebaseFirestore
 
 enum FCollectionReferance: String {
     case Users
+    case Product
 }
+
 
 func FirebaseReference(collectionReferance: FCollectionReferance) -> CollectionReference {
     return Firestore.firestore().collection(collectionReferance.rawValue)

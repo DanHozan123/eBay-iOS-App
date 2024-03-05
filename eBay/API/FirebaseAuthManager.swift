@@ -42,7 +42,7 @@ class FirebaseAuthManager {
             } else if let authResult = authResult {
     
                 if let avatarIamge = avatarIamge {
-                    FileStorage.shared.uploadImageToFirebase(image: avatarIamge) { url in
+                    FileStorage.shared.uploadImageToFirebase(image: avatarIamge, imagePath: FImagePath.profileImages) { url in
                         let user  = User(id: authResult.user.uid, email: email, username: username, avatarLink: url)
                         self.saveUserToFirestoreAndLocally(user: user)
                         completion(nil)

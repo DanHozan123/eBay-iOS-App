@@ -20,9 +20,7 @@ class SignUpController: UIViewController {
     
     private lazy var addProfileImageView : UIImageView = {
         let imageView = UIImageView()
-  
         imageView.image = UIImage(systemName: "person.crop.circle")
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addProfileImageTapped))
         imageView.addGestureRecognizer(tapGesture)
         imageView.isUserInteractionEnabled = true
@@ -123,9 +121,7 @@ class SignUpController: UIViewController {
     // MARK: - Actions
     
     @objc private func dismissView() {
-        dismiss(animated: true, completion: nil)
         let destinationViewController = MainTabBarController()
-        
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.window?.rootViewController = destinationViewController
         }
@@ -187,6 +183,5 @@ class SignUpController: UIViewController {
         
     }
 
-    
     
 }

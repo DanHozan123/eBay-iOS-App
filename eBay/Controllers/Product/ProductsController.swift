@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 class ProductsController: UITableViewController {
 
     // MARK: - Properties
-    
+
     
     // MARK: - View LifeCycle
     
@@ -37,7 +37,7 @@ class ProductsController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

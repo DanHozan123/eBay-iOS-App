@@ -16,11 +16,13 @@ class ProductController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
     }
     
     // MARK: - Configurations
     private func configureUI(){
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .systemPink
+        view.backgroundColor = .white
     }
 
 }
