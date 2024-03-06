@@ -23,20 +23,41 @@ class ProductService {
     
     private init () {}
     
-    public func uploadProduct(prodcutToUpload product: ProductData) {
+    func uploadProduct(prodcutToUpload product: ProductData) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let productId = UUID()
         
         FileStorage.shared.uploadImageToFirebase(image: product.image, imagePath: FImagePath.productImages) { url in
-            let productData = Product(id: productId.uuidString, ownerId: uid, title: product.title, subtitile: product.subtitile, price: Double(product.price)!, description: product.description, productImageLink: url, timestamp: Date())
+            let productData = Product(id: productId.uuidString, ownerId: uid, title: product.title, subtitle: product.subtitile, price: Double(product.price)!, description: product.description, productImageLink: url, timestamp: Date())
             do {
                 try FirebaseReference(collectionReferance: .Product).document(productId.uuidString).setData(from: productData)
             } catch {
                 print("ERROR: ", error.localizedDescription)
             }
-            
         }
-        
     }
     
+    func fetchProducts(completion:@escaping ([Product]?) -> Void) {
+        
+        FirebaseReference(collectionReferance: .Product).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("ERROR: ",error.localizedDescription)
+                return
+            }
+            guard let documents = querySnapshot?.documents else { return }
+            
+            let products = documents.compactMap { queryDocumentSnapshot -> Product? in
+                do {
+                    return try queryDocumentSnapshot.data(as: Product.self)
+                } catch {
+                    print("ERROR: ", error.localizedDescription)
+                    return nil // Return nil if mapping fails
+                }
+            }
+            
+            completion(products)
+        }
+    }
+    
+  
 }

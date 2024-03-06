@@ -10,12 +10,15 @@ import UIKit
 class ProductTableCell: UITableViewCell {
 
     // MARK: - Properties
+    var viewModel: ProductViewModel? {
+        didSet { configureSubviewCellUI() }
+    }
     
     private var productImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "iPhone15 Pro Max")
+        imageView.backgroundColor = .systemGray6
         return imageView
     }()
     
@@ -24,7 +27,6 @@ class ProductTableCell: UITableViewCell {
         label.font =  UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.text = "iPhone15 Pro Max 5G Factory Unlocked Smartphone 7.3"
         return label
     }()
 
@@ -34,7 +36,6 @@ class ProductTableCell: UITableViewCell {
         label.textColor = UIColor.systemGray
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.text = "Pre-Owned"
         return label
     }()
     
@@ -42,11 +43,10 @@ class ProductTableCell: UITableViewCell {
         let label = UILabel()
         label.font =  UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
-        label.text = "250 EUR"
         return label
     }()
    
-    private lazy var addBasketButton : UIButton = {
+    private lazy var addFavoritesButton : UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
@@ -88,10 +88,18 @@ class ProductTableCell: UITableViewCell {
         contentView.addSubview(priceLabel)
         priceLabel.anchor(left: productImageView.rightAnchor, bottom: bottomAnchor, paddingLeft: 10, paddingBottom: 5)
         
-        contentView.addSubview(addBasketButton)
-        addBasketButton.anchor(bottom: bottomAnchor, right: rightAnchor, paddingBottom: 10, paddingRight: 10)
-        addBasketButton.setDimensions(height: 50, width: 50)
+        contentView.addSubview(addFavoritesButton)
+        addFavoritesButton.anchor(bottom: bottomAnchor, right: rightAnchor, paddingBottom: 10, paddingRight: 10)
+        addFavoritesButton.setDimensions(height: 50, width: 50)
         
+    }
+    
+    private func configureSubviewCellUI() {
+        guard let viewModel = viewModel else { return }
+        productImageView.sd_setImage(with: URL(string: viewModel.urlImageProduct))
+        titleProductLabel.text = viewModel.titleProduct
+        subtitleProductLabel.text = viewModel.subtitleProduct
+        priceLabel.text = String(viewModel.priceProduct)
     }
     
     // MARK: - Actions

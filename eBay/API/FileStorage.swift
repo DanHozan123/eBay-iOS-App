@@ -26,7 +26,7 @@ class FileStorage {
     
     func uploadImageToFirebase(image: UIImage, imagePath: FImagePath, completion: @escaping (String) -> Void) {
         let filename = "\(UUID().uuidString).jpg"
-        let imageRef = Storage.storage().reference().child("\(FImagePath.profileImages)/\(filename)")
+        let imageRef = Storage.storage().reference().child("\(imagePath)/\(filename)")
         
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
@@ -34,13 +34,13 @@ class FileStorage {
         
         imageRef.putData(imageData) { (metadata, error) in
             guard let _ = metadata else {
-                print("ERROR: Error uploading image.", error?.localizedDescription ?? "ERROR: Unknown error.")
+                print("ERROR: ", error?.localizedDescription ?? "ERROR: Unknown error.")
                 return
             }
             
             imageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
-                    print("DEBUG: Error getting download URL.", error?.localizedDescription ?? "ERROR: Unknown error.")
+                    print("ERROR: ", error?.localizedDescription ?? "ERROR: Unknown error.")
                     return
                 }
                 completion(downloadURL.absoluteString)

@@ -13,7 +13,7 @@ class ProfileController: UIViewController {
     
     // MARK: - Properties
     
-    var viewModel: ProfileViewModel? {
+    private var viewModel: ProfileViewModel? {
         didSet { configureUI() }
     }
     
@@ -71,7 +71,7 @@ class ProfileController: UIViewController {
         let imageDefault = UIImageView()
         imageDefault.sd_setImage(with: URL(string: avatarLink)) { (_, error, _, _)  in
             if let error = error {
-                print("DEBUG: Failed to set data. / FUNC: configureUI() / ERROR: ", error.localizedDescription)
+                print("ERROR: ", error.localizedDescription)
                 return
             }
             self.profileImageView.image = imageDefault.image?.circleMasked

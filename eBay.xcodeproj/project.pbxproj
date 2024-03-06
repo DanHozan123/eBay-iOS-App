@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E0B97172B9749AA009D2112 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B97162B9749AA009D2112 /* ProductService.swift */; };
 		0E0B97192B9749FD009D2112 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B97182B9749FD009D2112 /* Product.swift */; };
+		0E0B971B2B97A1FA009D2112 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B971A2B97A1FA009D2112 /* ProductViewModel.swift */; };
 		0E1C32862B936E3B00A6B9B5 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C32852B936E3B00A6B9B5 /* SignInController.swift */; };
 		0E1C32882B93863E00A6B9B5 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C32872B93863E00A6B9B5 /* SignInViewModel.swift */; };
 		0E1C328C2B9389F300A6B9B5 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1C328B2B9389F300A6B9B5 /* FirebaseAuthManager.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		0E0B97162B9749AA009D2112 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		0E0B97182B9749FD009D2112 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		0E0B971A2B97A1FA009D2112 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		0E1C32852B936E3B00A6B9B5 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		0E1C32872B93863E00A6B9B5 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		0E1C328B2B9389F300A6B9B5 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				0E1C32872B93863E00A6B9B5 /* SignInViewModel.swift */,
 				0E5336422B9498400067E188 /* SignUpViewModel.swift */,
 				0E53364C2B9519390067E188 /* ProfileViewModel.swift */,
+				0E0B971A2B97A1FA009D2112 /* ProductViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				0E53364D2B9519390067E188 /* ProfileViewModel.swift in Sources */,
 				0E3B05372B9262CF00BBC695 /* BasketController.swift in Sources */,
 				0E1C328C2B9389F300A6B9B5 /* FirebaseAuthManager.swift in Sources */,
+				0E0B971B2B97A1FA009D2112 /* ProductViewModel.swift in Sources */,
 				0E1C32862B936E3B00A6B9B5 /* SignInController.swift in Sources */,
 				0E0B97192B9749FD009D2112 /* Product.swift in Sources */,
 				0E3B051B2B92546F00BBC695 /* AppDelegate.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 
 struct ProfileViewModel {
     
-    var user: User
+    private let user: User
       
     var username: String {
         return user.username
@@ -17,6 +17,10 @@ struct ProfileViewModel {
     
     var avatarLink: String {
         return user.avatarLink
+    }
+    
+    init(user: User) {
+        self.user = user
     }
     
 }

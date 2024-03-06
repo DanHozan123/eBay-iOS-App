@@ -10,9 +10,11 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class ProductsController: UITableViewController {
-
+    
     // MARK: - Properties
-
+    private var products = [Product]() {
+        didSet { tableView.reloadData() }
+    }
     
     // MARK: - View LifeCycle
     
@@ -20,6 +22,7 @@ class ProductsController: UITableViewController {
         super.viewDidLoad()
         configureUI()
         configureTableView()
+        fetchProducts()
     }
     
     // MARK: - Configurations
@@ -33,11 +36,21 @@ class ProductsController: UITableViewController {
     private func configureTableView(){
         tableView.register(ProductTableCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
-
+    
+    // MARK: - Helpers
+    
+    private func fetchProducts() {
+        ProductService.shared.fetchProducts { products in
+            guard let products = products else { return }
+            self.products = products
+        }
+    }
+    
+    
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return products.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -47,17 +60,22 @@ class ProductsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ProductTableCell
         
+        cell.viewModel = ProductViewModel(product: products[indexPath.row])
+        
         return cell
     }
     
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         navigationController?.pushViewController(ProductController(), animated: true)
+        
     }
     
-    
-
-  
 }
+
+
+
+
+
+
