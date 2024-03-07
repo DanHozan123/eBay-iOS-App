@@ -9,21 +9,42 @@ import UIKit
 
 class BasketController: UIViewController {
 
+    
+    
+    // MARK: - Properties
+
+    private var currentUserId: String?
+    
+    // MARK: - View LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .white
+        configure()
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Configurations
+    
+    private func configure(){
+        view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .black
+        title = "Products"
+        if let currentUser = UserService.shared.getCurrentUserIdFromLocalMemory() {
+            self.currentUserId = currentUser
+        }
+        else {
+            goToSignIn()
+        }
+        
     }
-    */
+    
+    // MARK: - Navigation
+    
+    private func goToSignIn(){
+        let signInNC = UINavigationController(rootViewController: SignInController())
+        signInNC.modalPresentationStyle = .fullScreen
+        present(signInNC, animated: true, completion: nil)
+    }
+    
 
 }
