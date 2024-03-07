@@ -51,7 +51,7 @@ class CategoriesController: UICollectionViewController {
             navigationController?.pushViewController(AddProductController(user: user), animated: true)
         }
         else {
-            goToMainTabBar()
+            goToSignIn()
         }
     }
     
@@ -97,11 +97,13 @@ extension CategoriesController: UICollectionViewDelegateFlowLayout {
     
     //MARK: - Helpers
     
-    private func goToMainTabBar(){
+    private func goToSignIn(){
         let signInNC = UINavigationController(rootViewController: SignInController())
         signInNC.modalPresentationStyle = .fullScreen
         present(signInNC, animated: true, completion: nil)
     }
+    
+    
     
 }
 

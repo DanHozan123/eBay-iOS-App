@@ -55,7 +55,7 @@ class ProfileController: UIViewController {
             viewModel = ProfileViewModel(user: user)
         }
         else {
-            goToMainTabBar()
+            goToSignIn()
         }
     }
     
@@ -113,10 +113,17 @@ class ProfileController: UIViewController {
     
     //MARK: - Navigation
     
-    private func goToMainTabBar(){
+    private func goToSignIn(){
         let signInNC = UINavigationController(rootViewController: SignInController())
         signInNC.modalPresentationStyle = .fullScreen
         present(signInNC, animated: true, completion: nil)
+    }
+    
+    private func goToMainTabBar() {
+        let destinationViewController = MainTabBarController()
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = destinationViewController
+        }
     }
     
 }

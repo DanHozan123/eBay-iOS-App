@@ -89,5 +89,36 @@ class ProductService {
             completion(error)
         }
     }
-  
+    
+    func fetchFavoritesListProducts(currentUserId: String, completion: @escaping ([Product]) -> Void) {
+        FirebaseReference(collectionReferance: .Users).document(currentUserId).collection("favorites").getDocuments { querySnapshot, _ in
+            guard let querySnapshot = querySnapshot?.documents else { return }
+            let productsIds = querySnapshot.map{ $0.documentID }
+            self.fetchProductsIDs(ids: productsIds) { products in
+                guard let products = products else { return }
+                completion(products)
+            }
+            
+        }
+    }
+    
+    
+    func fetchProductsIDs(ids: [String], completion:@escaping ([Product]?) -> Void){
+        var products = [Product]()
+        var count = 0
+        ids.forEach { id in
+            FirebaseReference(collectionReferance: .Product).document(id).getDocument { documentSnapshot, _ in
+                if let product = try? documentSnapshot!.data(as: Product.self) {
+                    products.append(product)
+                    count += 1
+                    if count == ids.count {
+                        completion(products)
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
 }

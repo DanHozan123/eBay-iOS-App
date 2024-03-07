@@ -65,9 +65,11 @@ class UserService {
 
     // MARK: - Get Current User Id From Local Memory
     
-    func getCurrentUserIdFromLocalMemory() -> String {
-        let currentUser = getCurrentUserFromLocalMemory()
-        return currentUser?.id ?? ""
+    func getCurrentUserIdFromLocalMemory() -> String? {
+        if let currentUser = getCurrentUserFromLocalMemory() {
+            return currentUser.id
+        }
+        return nil
     }
     
     

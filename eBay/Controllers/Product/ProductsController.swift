@@ -33,8 +33,7 @@ class ProductsController: UITableViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .black
         title = "Products"
-        var currentUser = UserService.shared.getCurrentUserIdFromLocalMemory()
-        if currentUser != "" {
+        if let currentUser = UserService.shared.getCurrentUserIdFromLocalMemory() {
             self.currentUserId = currentUser
         }
         
@@ -51,6 +50,12 @@ class ProductsController: UITableViewController {
             guard let products = products else { return }
             self.products = products
         }
+    }
+    
+    private func goToSignIn(){
+        let signInNC = UINavigationController(rootViewController: SignInController())
+        signInNC.modalPresentationStyle = .fullScreen
+        present(signInNC, animated: true, completion: nil)
     }
 
     
@@ -82,7 +87,6 @@ class ProductsController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let productVC = ProductController()
         productVC.viewModel = ProductDetailViewModel(product: products[indexPath.row])
@@ -94,33 +98,41 @@ class ProductsController: UITableViewController {
 // MARK: - ProductTableCellDelegate
 extension ProductsController: ProductTableCellDelegate {
     func cellWantsToBeRemovedFromFavoritesList(cell: ProductTableCell) {
-        guard let currentUserId = currentUserId else { return }
-        print("DEBUG: remove")
-        ProductService.shared.deleteProductFromFavoritesList(productId: cell.viewModel!.productId, userId: currentUserId) { error in
-            if let error = error {
-                print("ERROR:", error.localizedDescription)
-            } else {
-                cell.addFavoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                cell.viewModel?.isAddToFavorites = false
+        
+        if let currentUserId = self.currentUserId {
+            
+            ProductService.shared.deleteProductFromFavoritesList(productId: cell.viewModel!.productId, userId: currentUserId) { error in
+                if let error = error {
+                    print("ERROR:", error.localizedDescription)
+                } else {
+                    cell.addFavoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                    cell.viewModel?.isAddToFavorites = false
+                }
             }
+        }
+        else {
+            goToSignIn()
         }
         
     }
     
     func cellWantsToBeAddedToFavoritesList(cell: ProductTableCell) {
-        guard let currentUserId = currentUserId else { return }
-        print("DEBUG: add")
-        ProductService.shared.addToFavoritesListProduct(thisProduct: cell.viewModel!.productId, toThisUserFavoritesList: currentUserId) { error in
+        if let currentUserId = self.currentUserId {
             
-            if let error = error {
-                print("ERROR:", error.localizedDescription)
-            } else {
-                cell.addFavoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                cell.viewModel?.isAddToFavorites = true
+            ProductService.shared.addToFavoritesListProduct(thisProduct: cell.viewModel!.productId, toThisUserFavoritesList: currentUserId) { error in
+                
+                if let error = error {
+                    print("ERROR:", error.localizedDescription)
+                } else {
+                    cell.addFavoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    cell.viewModel?.isAddToFavorites = true
+                }
             }
+        } else {
+            goToSignIn()
         }
     }
-  
+    
 }
 
 
