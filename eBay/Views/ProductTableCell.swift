@@ -7,12 +7,20 @@
 
 import UIKit
 
+
+protocol ProductTableCellDelegate: AnyObject {
+    func cellWantsToBeAddedToFavoritesList(cell: ProductTableCell)
+    func cellWantsToBeRemovedFromFavoritesList(cell: ProductTableCell)
+}
+
 class ProductTableCell: UITableViewCell {
 
     // MARK: - Properties
     var viewModel: ProductViewModel? {
         didSet { configureSubviewCellUI() }
     }
+    
+    weak var delegate: ProductTableCellDelegate?
     
     private var productImageView : UIImageView = {
         let imageView = UIImageView()
@@ -46,11 +54,11 @@ class ProductTableCell: UITableViewCell {
         return label
     }()
    
-    private lazy var addFavoritesButton : UIButton = {
+    lazy var addFavoritesButton : UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(addBasketButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addFavoritesButtonTapped), for: .touchUpInside)
         button.tintColor = .black
         return button
     }()
@@ -100,14 +108,21 @@ class ProductTableCell: UITableViewCell {
         titleProductLabel.text = viewModel.titleProduct
         subtitleProductLabel.text = viewModel.subtitleProduct
         priceLabel.text = String(viewModel.priceProduct)
+        
+        addFavoritesButton.setImage(viewModel.getImage, for: .normal)
+        
     }
     
     // MARK: - Actions
     
-    @objc func addBasketButtonTapped(){
-        print("DEBUG: addBasketButtonTapped()")
+    @objc func addFavoritesButtonTapped(){
+        guard let viewModel = viewModel else { return }
+        if viewModel.isAddToFavorites {
+            delegate?.cellWantsToBeRemovedFromFavoritesList(cell: self)
+        } else {
+            delegate?.cellWantsToBeAddedToFavoritesList(cell: self)
+        }
     }
-    
     
     
 

@@ -55,9 +55,39 @@ class ProductService {
                 }
             }
             
-            completion(products)
+            let sortedProducts = products.sorted { $0.timestamp <  $1.timestamp }
+            
+            completion(sortedProducts)
         }
     }
     
+    func addToFavoritesListProduct(thisProduct productId: String, toThisUserFavoritesList uid: String, completion: @escaping (Error?) -> Void) {
+        
+        FirebaseReference(collectionReferance: .Users).document(uid).collection("favorites").document(productId).setData([:]) { error in
+            if let error = error {
+                print("ERROR: \(error.localizedDescription)")
+            }
+            completion(error)
+        }
+    }
+    
+    func checkIfProductIsOnUserFavoritesList(productId: String, userId: String, completion: @escaping(Bool) -> Void) {
+        FirebaseReference(collectionReferance: .Users).document(userId).collection("favorites").document(productId).getDocument { snapshot, error in
+            guard let snapshotExists = snapshot?.exists else { return }
+            completion(snapshotExists)
+        }
+    }
+    
+    func deleteProductFromFavoritesList(productId: String, userId: String, completion: @escaping (Error?) -> Void) {
+        
+        let favoritesRef = FirebaseReference(collectionReferance: .Users).document(userId).collection("favorites").document(productId)
+        
+        favoritesRef.delete { error in
+            if let error = error {
+                print("ERROR: ", error.localizedDescription)
+            }
+            completion(error)
+        }
+    }
   
 }

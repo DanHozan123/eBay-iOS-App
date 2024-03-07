@@ -52,7 +52,7 @@ class UserService {
         return nil
     }
     
-    // MARK: - Save User Local Memory
+    // MARK: - Save User To Local Memory
     
     func saveUserLocally(user: User) {
         do {
@@ -63,7 +63,12 @@ class UserService {
         }
     }
 
-
+    // MARK: - Get Current User Id From Local Memory
+    
+    func getCurrentUserIdFromLocalMemory() -> String {
+        let currentUser = getCurrentUserFromLocalMemory()
+        return currentUser?.id ?? ""
+    }
     
     
 }

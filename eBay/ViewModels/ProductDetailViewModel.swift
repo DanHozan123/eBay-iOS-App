@@ -1,19 +1,20 @@
 //
-//  ProductViewModel.swift
+//  ProductDetailViewModel.swift
 //  eBay
 //
-//  Created by Dan Hozan on 05.03.2024.
+//  Created by Dan Hozan on 06.03.2024.
 //
 
 import Foundation
-import UIKit
 
-struct ProductViewModel {
+struct ProductDetailViewModel {
     
     private let product: Product
     
-    var isAddToFavorites = false
-    
+    var productId: String {
+        return product.id
+    }
+
     var urlImageProduct: String {
         return product.productImageLink
     }
@@ -34,16 +35,15 @@ struct ProductViewModel {
         return product.description
     }
     
-    var productId: String {
-        return product.id
+    var productOwnerId: String {
+        return product.ownerId
     }
-    
+
     init(product: Product) {
         self.product = product
     }
     
-    var getImage: UIImage {
-        return isAddToFavorites == true ? UIImage(systemName: "heart.fill")! : UIImage(systemName: "heart")!
-    }
+
+    
     
 }
